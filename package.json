@@ -1,0 +1,56 @@
+{
+  "name": "led-screen-tester",
+  "productName": "LED Screen Tester",
+  "version": "1.0.0",
+  "description": "Testeur d'écran LED : couleurs unies et mires de diagnostic, en plein écran.",
+  "main": "main.js",
+  "license": "MIT",
+  "author": "LED Screen Tester",
+  "desktopName": "led-screen-tester.desktop",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "icon": "python3 scripts/make-icon.py",
+    "dist": "npm run icon && electron-builder --linux AppImage"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "fr.ledscreen.tester",
+    "productName": "LED Screen Tester",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "styles.css",
+      "app.js",
+      "package.json"
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility",
+      "icon": "build/icon.png",
+      "executableName": "led-screen-tester",
+      "syncDesktopName": true,
+      "desktop": {
+        "entry": {
+          "Name": "LED Screen Tester",
+          "Comment": "Couleurs et mires de test pour dalles LED, LCD et OLED",
+          "Categories": "Utility;Graphics;",
+          "StartupWMClass": "LED Screen Tester"
+        }
+      }
+    },
+    "appImage": {
+      "artifactName": "LED-Screen-Tester-${version}-${arch}.AppImage"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+# Dépendances
+node_modules/
+
+# Sortie de build
+dist/
+builder-debug.yml
+builder-effective-config.yaml
+
+# Journaux et divers
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.tmp/
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp

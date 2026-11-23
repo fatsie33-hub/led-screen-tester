@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LED Screen Tester — Mires &amp; couleurs</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <aside id="panel">
+    <header class="brand">
+      <div class="logo">▦</div>
+      <div>
+        <h1>LED Screen Tester</h1>
+        <p>Couleurs &amp; mires pour dalles LED, LCD et OLED</p>
+      </div>
+    </header>
+
+    <nav id="test-list" aria-label="Mires de test"></nav>
+
+    <div class="controls">
+      <label class="field">
+        <span>Luminosité <em id="brightness-value">100 %</em></span>
+        <input type="range" id="brightness" min="5" max="100" step="1" value="100">
+      </label>
+      <label class="field">
+        <span>Vitesse <em id="speed-value">1.0×</em></span>
+        <input type="range" id="speed" min="20" max="300" step="10" value="100">
+      </label>
+      <label class="field field--color">
+        <span>Couleur libre</span>
+        <input type="color" id="custom-color" value="#ff8800">
+      </label>
+    </div>
+
+    <footer class="hints">
+      <kbd>←</kbd><kbd>→</kbd> mires · <kbd>F</kbd> plein écran · <kbd>H</kbd> panneau · <kbd>B</kbd> noir · <kbd>Ctrl</kbd>+<kbd>Q</kbd> quitter
+    </footer>
+  </aside>
+
+  <main id="stage">
+    <canvas id="canvas"></canvas>
+
+    <div class="toolbar">
+      <button id="prev" class="icon-btn" title="Mire précédente (←)" aria-label="Mire précédente">‹</button>
+      <span id="current-name">Rouge</span>
+      <button id="next" class="icon-btn" title="Mire suivante (→)" aria-label="Mire suivante">›</button>
+      <span class="sep"></span>
+      <button id="auto" class="icon-btn icon-btn--wide" title="Défilement automatique des couleurs">Auto</button>
+      <button id="fullscreen" class="icon-btn" title="Plein écran (F)" aria-label="Plein écran">⛶</button>
+      <button id="hide" class="icon-btn" title="Masquer le panneau (H)" aria-label="Masquer le panneau">◧</button>
+      <button id="quit" class="icon-btn icon-btn--wide icon-btn--quit" title="Quitter l'application (Ctrl+Q)">Quitter</button>
+    </div>
+
+    <button id="restore" title="Afficher le panneau (H)">◨</button>
+    <div id="toast" aria-live="polite"></div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
