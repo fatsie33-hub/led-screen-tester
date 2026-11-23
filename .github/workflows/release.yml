@@ -1,4 +1,4 @@
-name: Build AppImage
+name: Release
 
 on:
   push:
@@ -10,8 +10,8 @@ permissions:
   contents: write
 
 jobs:
-  build:
-    name: AppImage (x86_64)
+  release:
+    name: AppImage + version web
     runs-on: ubuntu-22.04
     steps:
       - name: Récupérer le code
@@ -31,11 +31,16 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Téléverser l'artefact
+      - name: Construire la version web
+        run: npm run web
+
+      - name: Téléverser les artefacts
         uses: actions/upload-artifact@v4
         with:
-          name: LED-Screen-Tester-AppImage
-          path: dist/*.AppImage
+          name: LED-Screen-Tester
+          path: |
+            dist/*.AppImage
+            dist/*-web.zip
           if-no-files-found: error
 
       - name: Attacher à la release
@@ -44,5 +49,5 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 || \
-            gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --generate-notes
-          gh release upload "$GITHUB_REF_NAME" dist/*.AppImage --clobber
+            gh release create "$GITHUB_REF_NAME" --title "LED Screen Tester $GITHUB_REF_NAME" --generate-notes
+          gh release upload "$GITHUB_REF_NAME" dist/*.AppImage dist/*-web.zip --clobber

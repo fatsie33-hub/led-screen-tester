@@ -11,7 +11,9 @@
   "scripts": {
     "start": "electron .",
     "icon": "python3 scripts/make-icon.py",
-    "dist": "npm run icon && electron-builder --linux AppImage"
+    "dist": "npm run icon && electron-builder --linux AppImage",
+    "web": "bash scripts/build-web.sh",
+    "release": "npm run dist && npm run web"
   },
   "devDependencies": {
     "electron": "^38.0.0",
